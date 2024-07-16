@@ -21,6 +21,7 @@ import Formwrapper from "@/components/wrapper/formwrapper";
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignupPage() {
   const [loading, setLoading] = useState(false);
@@ -72,7 +73,12 @@ export default function SignupPage() {
               </FormItem>
             )}
           />
-
+          <h1 className="text-center">
+            Don't have an account?{" "}
+            <Link className="underline" href={"/signup"}>
+              Signup Now
+            </Link>
+          </h1>
           <Button disabled={loading} className="w-full" type="submit">
             Submit
           </Button>

@@ -21,6 +21,7 @@ import Formwrapper from "@/components/wrapper/formwrapper";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignupPage() {
   const [loading, setLoading] = useState(false);
@@ -107,6 +108,12 @@ export default function SignupPage() {
               </FormItem>
             )}
           />
+          <h1 className="text-center">
+            Already have an account?{" "}
+            <Link className="underline" href={"/signin"}>
+              Signin Now
+            </Link>
+          </h1>
           <Button disabled={loading} className="w-full" type="submit">
             Submit
           </Button>
