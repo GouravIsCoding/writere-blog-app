@@ -9,6 +9,7 @@ const navItems = [
   { id: 1, href: "/", name: "Home", auth: false },
   { id: 2, href: "/signup", name: "Signup", auth: false },
   { id: 3, href: "/signin", name: "Signin", auth: false },
+  { id: 3, href: "/dashboard", name: "Dashboard", auth: true },
 ];
 
 export default function Navbar() {

@@ -75,7 +75,7 @@ export default function CreateBlog() {
       }
       if (data) {
         toast.success(message);
-        router.push("/");
+        router.push(`/blog/${data?.blogId}`);
       }
     } catch (error) {}
   }

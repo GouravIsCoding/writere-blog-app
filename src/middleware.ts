@@ -14,11 +14,11 @@ export async function middleware(req: NextRequest) {
   if (!session && !unauthRoutes.includes(path)) {
     return NextResponse.redirect(new URL("/signin", req.url));
   } else if (session && (path === "/signin" || path === "/signup")) {
-    return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/", "/signin", "/signup"],
+  matcher: ["/", "/signin", "/signup", "/dashboard/:path*"],
 };
