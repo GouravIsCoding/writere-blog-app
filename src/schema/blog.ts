@@ -18,7 +18,7 @@ export type blogDisplayType = {
   createdAt: Date;
   author: {
     email: string;
-    name: string | null;
+    name: string;
   };
   contents: {
     id: number;
@@ -28,4 +28,15 @@ export type blogDisplayType = {
     text: string | null;
     imageUrl: string | null;
   }[];
+};
+
+export type blogListType = {
+  para: string | undefined;
+  image: string | undefined;
+  id: string;
+  createdAt: string;
+  title: string;
+  author: {
+    name: string;
+  };
 };

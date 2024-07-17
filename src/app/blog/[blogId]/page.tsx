@@ -1,6 +1,7 @@
 import { getBlogByIdAction } from "@/app/actions/getBlogById";
 import ImageDisplay from "@/components/Blog/ImageDisplay";
 import Para from "@/components/Blog/Para";
+import ErrorDisplay from "@/components/errorDisplay";
 import { blogDisplayType } from "@/schema/blog";
 
 export default async function BlogPage({
@@ -11,14 +12,7 @@ export default async function BlogPage({
   const { error, data } = await getBlogByIdAction(params.blogId);
   const blog: blogDisplayType = data.blog;
 
-  if (error)
-    return (
-      <div className="min-h-screen flex justify-center items-center">
-        <h1 className="mx-auto text-center text-red-500 bg-red-200 shadow-sm p-4 rounded-xl">
-          {error}
-        </h1>
-      </div>
-    );
+  if (error) return <ErrorDisplay error={error} />;
   if (blog)
     return (
       <>
