@@ -21,14 +21,14 @@ export const authOptions: NextAuthOptions = {
             },
           });
 
-          if (!user) return null;
+          if (!user) return { error: "wrong credentials" };
 
           const verified = await comparePasswords(
             credentials.password,
             user.password
           );
 
-          if (!verified) return null;
+          if (!verified) return { error: "wrong credentials" };
 
           return { email: user.email, id: user.id, name: user.name };
         } catch (err: any) {
@@ -38,6 +38,12 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user }) {
+      if (user?.error) {
+        throw new Error(user?.error);
+      }
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;

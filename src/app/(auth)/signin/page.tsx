@@ -22,8 +22,12 @@ import Formwrapper from "@/components/wrapper/formwrapper";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { error } from "console";
 
 export default function SignupPage() {
+  const { push } = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof signinZodSchema>>({
     resolver: zodResolver(signinZodSchema),
@@ -35,8 +39,12 @@ export default function SignupPage() {
 
   async function onSubmit(values: z.infer<typeof signinZodSchema>) {
     setLoading(true);
-    await signIn("credentials", values);
+    const res = await signIn("credentials", { ...values, redirect: false });
     setLoading(false);
+    if (res?.error) return toast.error(res.error);
+
+    toast.success("Signin scuccesful");
+    return push("/dashboard");
   }
 
   return (

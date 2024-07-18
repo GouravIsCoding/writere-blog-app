@@ -8,7 +8,7 @@ export default function BlogListItem({ blog }: { blog: blogListType }) {
     <>
       <Link href={`/blog/${blog.id}`}>
         <div className="w-full">
-          <div className="w-full flex justify-start items-center bg-slate-100 rounded-xl p-4">
+          <div className="w-full flex justify-start items-center bg-slate-100 rounded-xl p-4 shadow">
             {blog.image ? (
               <div className="w-24 h-auto my-6 mx-4">
                 <Image
@@ -21,8 +21,8 @@ export default function BlogListItem({ blog }: { blog: blogListType }) {
                 />
               </div>
             ) : (
-              <div className="w-24 h-16 my-6 mx-4 bg-slate-300">
-                <h1>No Image</h1>
+              <div className="w-24 h-16 my-6 mx-4 bg-slate-300 flex justify-center items-center">
+                <h1 className="text-center w-auto">No Image</h1>
               </div>
             )}
             <div className="w-full">
