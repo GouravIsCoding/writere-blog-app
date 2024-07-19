@@ -1,5 +1,5 @@
 import prisma from "../db";
-const blogPerPage = 5;
+const blogPerPage = 6;
 export const getBlogsDb = async (page: number) => {
   try {
     const blogs = await prisma.blog.findMany({

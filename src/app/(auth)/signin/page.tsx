@@ -24,7 +24,6 @@ import { useState } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 
 export default function SignupPage() {
   const { push } = useRouter();

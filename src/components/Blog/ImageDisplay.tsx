@@ -10,7 +10,7 @@ export default function ImageDisplay({ url }: { url: string | null }) {
             alt=""
             width={"3800"}
             height={"0"}
-            className="w-auto max-h-96 mx-auto"
+            className="w-auto max-h-96 mx-auto rounded-lg"
             loading="lazy"
           />
         </div>

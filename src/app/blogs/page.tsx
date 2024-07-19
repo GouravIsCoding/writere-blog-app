@@ -6,7 +6,7 @@ import { blogListType } from "@/schema/blog";
 import Link from "next/link";
 import { getBlogCountAction } from "../actions/totalBlogs";
 
-const blogsPerPage = 5;
+const blogsPerPage = 6;
 
 export default async function BlogPage({
   searchParams,
@@ -28,9 +28,9 @@ export default async function BlogPage({
       <>
         <h1 className="text-center text-3xl m-5">Latest Blogs</h1>
         <div className="w-full min-h-screen">
-          <div className="w-full min-h-screen md:w-2/3 mx-auto bg-white p-4 shadow">
+          <div className="w-full min-h-screen md:w-5/6 mx-auto bg-slate-100 p-4 shadow flex justify-evenly items-center flex-wrap">
             {blogs.map((blog) => (
-              <li className="list-none my-6" key={blog.id}>
+              <li className="w-full md:w-1/4 list-none my-6 mx-3" key={blog.id}>
                 <BlogListItem blog={blog} />
               </li>
             ))}

@@ -7,31 +7,34 @@ export default function BlogListItem({ blog }: { blog: blogListType }) {
   return (
     <>
       <Link href={`/blog/${blog.id}`}>
-        <div className="w-full">
-          <div className="w-full flex justify-start items-center bg-slate-100 rounded-xl p-4 shadow">
-            {blog.image ? (
-              <div className="w-24 h-auto my-6 mx-4">
-                <Image
-                  src={blog.image.replace("/upload/", "/upload/w_300/")}
-                  alt=""
-                  width={"300"}
-                  height={"0"}
-                  className=""
-                  loading="lazy"
-                />
-              </div>
-            ) : (
-              <div className="w-24 h-16 my-6 mx-4 bg-slate-300 flex justify-center items-center">
-                <h1 className="text-center w-auto">No Image</h1>
-              </div>
-            )}
+        <div className="w-full min-h-64 bg-white p-3 rounded-2xl shadow-lg">
+          <span className="mx-3 text-xs float-right">
+            {giveTime(blog.createdAt)}
+          </span>
+
+          {blog.image ? (
+            <div className="w-auto h-auto my-6 mx-4 p-2 rounded-lg">
+              <Image
+                src={blog.image.replace("/upload/", "/upload/w_720/")}
+                alt=""
+                width={"720"}
+                height={"0"}
+                className="mx-auto rounded-lg"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div className="w-auto h-48 my-6 mx-4 bg-slate-300 flex justify-center items-center rounded-xl">
+              <h1 className="text-center w-auto">No Image</h1>
+            </div>
+          )}
+          <div className="w-full flex justify-start items-center rounded-xl p-4 shadow">
             <div className="w-full">
               <div className="flex justify-between items-center">
                 <h1 className="text-lg font-medium">Title:{blog.title}</h1>
-                <span className="mx-3 text-xs">{giveTime(blog.createdAt)}</span>
               </div>
               <h1 className="text-slate-500">Author:{blog.author.name}</h1>
-              {blog.para && <p>{blog.para.slice(0, 180)}...</p>}
+              {blog.para && <p>{blog.para.slice(0, 80)}...</p>}
             </div>
           </div>
         </div>
