@@ -117,7 +117,7 @@ export default function CreateBlog() {
               key={index}
               index={index}
               type={block.type}
-              content={block.content}
+              content={block.content || ""}
               updateContent={updateContentBlock}
               handleImageUpload={(e) => handleImageUpload(e, index)}
               removeContent={removeContentBlock}

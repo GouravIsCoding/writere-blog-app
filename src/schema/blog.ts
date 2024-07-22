@@ -2,11 +2,19 @@ import { z } from "zod";
 
 export type contentType = {
   type: "PARAGRAPH" | "IMAGE";
-  content?: string;
+  content: string | null;
+};
+
+export type editContentType = {
+  id?: number;
+  type: "PARAGRAPH" | "IMAGE";
+  content: string | null;
+  order: number;
 };
 
 export const contentZodSchema = z.array(
   z.object({
+    id: z.number().optional(),
     type: z.union([z.literal("PARAGRAPH"), z.literal("IMAGE")]),
     content: z.string({ message: "content must be a string" }).optional(),
   })

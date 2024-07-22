@@ -8,7 +8,16 @@ export const getBlogByIdDb = async (id: string) => {
         id: true,
         title: true,
         createdAt: true,
-        contents: true,
+        contents: {
+          select: {
+            id: true,
+            contentOrder: true,
+            contentType: true,
+            text: true,
+            imageUrl: true,
+          },
+          orderBy: { contentOrder: "asc" },
+        },
         author: {
           select: {
             name: true,

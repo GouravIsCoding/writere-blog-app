@@ -4,14 +4,17 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import Drag from "../svg/drag";
 
 export interface ContentBlockData {
+  id?: number;
   type: "PARAGRAPH" | "IMAGE";
-  content: string;
+  content: string | null;
   order: number;
 }
 
 interface ContentBlockProps {
+  editable?: boolean;
   index: number;
   type: "PARAGRAPH" | "IMAGE";
   content: string;
@@ -21,6 +24,7 @@ interface ContentBlockProps {
 }
 
 const ContentBlock: React.FC<ContentBlockProps> = ({
+  editable = false,
   index,
   type,
   content,
@@ -31,20 +35,34 @@ const ContentBlock: React.FC<ContentBlockProps> = ({
   return (
     <div>
       {type === "PARAGRAPH" ? (
-        <Textarea
-          className="min-h-24 my-4"
-          value={content}
-          onChange={(e) => updateContent(index, e.target.value)}
-          placeholder="Enter paragraph text"
-        />
+        <div className="flex justify-between items-center">
+          <Textarea
+            className="w-[90%] min-h-24 my-4"
+            value={content}
+            onChange={(e) => updateContent(index, e.target.value)}
+            placeholder="Enter paragraph text"
+          />
+          {editable && (
+            <span>
+              <Drag />
+            </span>
+          )}
+        </div>
       ) : (
         <div>
-          <Input
-            className="my-4"
-            type="file"
-            accept="image/*"
-            onChange={(e) => handleImageUpload(e, index)}
-          />
+          <div className="flex justify-between items-center">
+            <Input
+              className="my-4 w-[90%]"
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleImageUpload(e, index)}
+            />
+            {editable && (
+              <span>
+                <Drag />
+              </span>
+            )}
+          </div>
           {content && (
             <div className="w-full h-auto">
               <Image
