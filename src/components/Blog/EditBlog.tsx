@@ -76,12 +76,11 @@ export default function EditBlog({ blog }: { blog: blogDisplayType }) {
   };
 
   function handleDrop(result: any) {
-    console.log(result);
     setContentBlocks((prev) => {
       const item = prev[result.source.index];
       const modified = prev.filter((_, index) => index !== result.source.index);
       modified.splice(result.destination.index, 0, item);
-      console.log(modified);
+
       return modified;
     });
   }

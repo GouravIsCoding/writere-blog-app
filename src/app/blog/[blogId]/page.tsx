@@ -25,12 +25,14 @@ export default async function BlogPage({
         <div className="w-full min-h-screen">
           <div className="w-full min-h-screen md:w-2/3 mx-auto bg-white p-4 shadow">
             <div className="flex justify-between items-center bg-slate-100 rounded-xl">
-              <div className="px-3.5 py-2 text-3xl bg-slate-300 rounded-full m-4">
-                {blog.author.name?.trim()[0]}
-              </div>
-              <div>
-                <h1>{blog.author.name}</h1>
-                <h2>{blog.author.email}</h2>
+              <div className="flex justify-start items-center">
+                <div className="px-3.5 py-2 text-3xl bg-slate-300 rounded-full m-4">
+                  {blog.author.name?.trim()[0]}
+                </div>
+                <div>
+                  <h1>{blog.author.name}</h1>
+                  <h2>{blog.author.email}</h2>
+                </div>
               </div>
               <div>
                 {session?.user.email === blog.author.email && (

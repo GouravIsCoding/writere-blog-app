@@ -15,6 +15,7 @@ import { CONFIG } from "@/CONFIG";
 import toast from "react-hot-toast";
 import { createBlogAction } from "@/app/actions/createBlog";
 import { useRouter } from "next/navigation";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 export default function CreateBlog() {
   const router = useRouter();
@@ -64,6 +65,16 @@ export default function CreateBlog() {
     }
   };
 
+  function handleDrop(result: any) {
+    setContentBlocks((prev) => {
+      const item = prev[result.source.index];
+      const modified = prev.filter((_, index) => index !== result.source.index);
+      modified.splice(result.destination.index, 0, item);
+
+      return modified;
+    });
+  }
+
   async function onSubmit() {
     try {
       const { error, data, message } = await createBlogAction(
@@ -112,17 +123,44 @@ export default function CreateBlog() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          {contentBlocks.map((block, index) => (
-            <ContentBlock
-              key={index}
-              index={index}
-              type={block.type}
-              content={block.content || ""}
-              updateContent={updateContentBlock}
-              handleImageUpload={(e) => handleImageUpload(e, index)}
-              removeContent={removeContentBlock}
-            />
-          ))}
+          <DragDropContext onDragEnd={handleDrop}>
+            <Droppable droppableId="createbox">
+              {(provided) => (
+                <ul ref={provided.innerRef} {...provided.droppableProps}>
+                  {contentBlocks.map((block, index) => (
+                    <Draggable
+                      key={index.toString()}
+                      draggableId={index.toString()}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <li
+                          className="list-none"
+                          ref={provided.innerRef}
+                          {...provided.dragHandleProps}
+                          {...provided.draggableProps}
+                        >
+                          <ContentBlock
+                            editable={true}
+                            index={index}
+                            type={block.type}
+                            content={block.content || ""}
+                            updateContent={updateContentBlock}
+                            handleImageUpload={(e) =>
+                              handleImageUpload(e, index)
+                            }
+                            removeContent={removeContentBlock}
+                          />
+                        </li>
+                      )}
+                    </Draggable>
+                  ))}
+
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
           <div className="text-center">
             <Button
               disabled={loading}

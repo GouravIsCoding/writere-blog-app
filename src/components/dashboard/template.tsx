@@ -7,19 +7,17 @@ interface props {
   href: string;
   className?: string;
   svg: ReactNode;
-  header?: number;
   buttonPhrase: string;
 }
 
 export default function Template(props: props) {
   return (
     <>
-      <div className="h-42 px-6 py-3 m-2 bg-white shadow inline-block min-w-64">
+      <div className="h-42 px-6 py-3 m-2 bg-white inline-block min-w-64 shadow-lg">
         <div className="flex flex-col justify-center items-center">
           <div
-            className={`flex flex-col justify-between items-center px-8 py-2 m-2 border-4 ${props.className} rounded-full`}
+            className={`flex flex-col justify-between items-center px-8 py-2 m-2 ${props.className} rounded-full`}
           >
-            <h1 className="text-4xl">{props.header}</h1>
             {props.svg}
           </div>
         </div>
