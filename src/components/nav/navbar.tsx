@@ -9,7 +9,9 @@ const navItems = [
   { id: 1, href: "/", name: "Home", auth: false },
   { id: 2, href: "/signup", name: "Signup", auth: false },
   { id: 3, href: "/signin", name: "Signin", auth: false },
-  { id: 3, href: "/dashboard", name: "Dashboard", auth: true },
+  { id: 4, href: "/dashboard", name: "Dashboard", auth: true },
+  { id: 5, href: "/blogs?page=1", name: "Read" },
+  { id: 6, href: "/dashboard/myblog?page=1", name: "My Blog", auth: true },
 ];
 
 export default function Navbar() {
@@ -28,7 +30,7 @@ export default function Navbar() {
         <div className="float-right">
           {navItems.map(
             (item) =>
-              authStatus === item.auth && (
+              (authStatus === item.auth || item.auth === undefined) && (
                 <li
                   className={`list-none inline-block mx-2 self-center my-2 ${
                     pathname === item.href ? "text-orange-500" : ""

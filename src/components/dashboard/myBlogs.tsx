@@ -6,7 +6,7 @@ export default function MyBlogs() {
     <>
       <Template
         buttonPhrase="My blogs"
-        href="/dashboard/myblog"
+        href="/dashboard/myblog?page=1"
         svg={<Book />}
       />
     </>
