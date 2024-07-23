@@ -15,11 +15,11 @@ export default function BlogListItem({ blog }: { blog: blogListType }) {
           {blog.image ? (
             <div className="w-auto h-auto my-6 mx-4 p-2 rounded-lg">
               <Image
-                src={blog.image.replace("/upload/", "/upload/w_720/")}
+                src={blog.image.replace("/upload/", "/upload/h_360/")}
                 alt=""
-                width={"720"}
+                width={"1280"}
                 height={"0"}
-                className="mx-auto rounded-lg"
+                className="mx-auto rounded-lg w-auto max-h-48"
                 loading="lazy"
               />
             </div>
