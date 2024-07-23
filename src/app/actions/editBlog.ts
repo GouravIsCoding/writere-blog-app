@@ -5,11 +5,13 @@ import { asyncHandler } from "@/utils/asyncHandler";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/option";
 import { editBlogDb } from "@/db/blog/edit";
+import { revalidatePath } from "next/cache";
 
 export async function editBlogAction(
   title: string,
   contents: editContentType[],
-  blogId: string
+  blogId: string,
+  deleted: editContentType[]
 ) {
   return asyncHandler(async () => {
     contentZodSchema.parse(contents);
@@ -25,14 +27,21 @@ export async function editBlogAction(
     const createContents = contents.filter((item) => !item.id);
     const updateContents = contents.filter((item) => item.id);
 
+    const arrDeleteId: number[] = deleted
+      .filter((item) => item?.id)
+      .map((item) => Number(item?.id));
+
     const updated = await editBlogDb(
       title,
       session.user.id,
       blogId,
       createContents,
-      updateContents
+      updateContents,
+      arrDeleteId
     );
     if (!updated) return { error: "Blog update failed" };
+    revalidatePath(`/blog/${blogId}`);
+
     return {
       message: "Blog update Successful!",
     };

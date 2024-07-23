@@ -6,10 +6,11 @@ export const editBlogDb = async (
   authorId: string,
   blogId: string,
   createContents: editContentType[],
-  updateContents: editContentType[]
+  updateContents: editContentType[],
+  deleted: number[]
 ) => {
   try {
-    const blog = await prisma.blog.update({
+    await prisma.blog.update({
       where: { authorId, id: blogId },
       data: {
         title,
@@ -30,6 +31,14 @@ export const editBlogDb = async (
               contentOrder: item.order,
             },
           })),
+        },
+      },
+    });
+
+    await prisma.content.deleteMany({
+      where: {
+        id: {
+          in: deleted,
         },
       },
     });
