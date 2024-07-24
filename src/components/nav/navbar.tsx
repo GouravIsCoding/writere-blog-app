@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { Logout } from "./logoutButton";
 import { usePathname } from "next/navigation";
+import SearchSVG from "../svg/search";
 
 const navItems = [
   { id: 1, href: "/", name: "Home", auth: false },
@@ -27,6 +28,15 @@ export default function Navbar() {
             Write're
           </h1>
         </Link>
+        <li
+          className={`list-none inline-block mx-2 h-full relative top-2 ${
+            pathname === "/blogs/search" ? "text-orange-500" : ""
+          }`}
+        >
+          <Link href={"/blogs/search"}>
+            <SearchSVG size="size-10" />
+          </Link>
+        </li>
         <div className="float-right">
           {navItems.map(
             (item) =>
@@ -41,6 +51,7 @@ export default function Navbar() {
                 </li>
               )
           )}
+
           {authStatus === true && <Logout />}
         </div>
       </nav>
