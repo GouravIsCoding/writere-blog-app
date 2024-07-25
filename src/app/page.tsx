@@ -10,8 +10,6 @@ import SearchDiv from "@/components/landing/search";
 import ReadDiv from "@/components/landing/read";
 
 export default function Page() {
-  const contentDivs = [<HomePage />, <SearchDiv />, <ReadDiv />];
-
   return (
     <div className="w-full min-h-screen flex justify-center items-center">
       <Carousel
@@ -22,11 +20,21 @@ export default function Page() {
         className="w-full max-w-full"
       >
         <CarouselContent className="-mt-1 h-96">
-          {contentDivs.map((el, index) => (
-            <CarouselItem key={index} className="w-auto">
-              <div className="p-1">{el}</div>
-            </CarouselItem>
-          ))}
+          <CarouselItem className="w-auto">
+            <div className="p-1">
+              <HomePage />
+            </div>
+          </CarouselItem>
+          <CarouselItem className="w-auto">
+            <div className="p-1">
+              <SearchDiv />
+            </div>
+          </CarouselItem>
+          <CarouselItem className="w-auto">
+            <div className="p-1">
+              <ReadDiv />
+            </div>
+          </CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
