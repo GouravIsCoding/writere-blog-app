@@ -39,7 +39,7 @@ export default function Page() {
     <>
       <div className="w-full min-h-screen">
         <div className="w-full min-h-screen md:w-2/3 mx-auto bg-white p-4 shadow flex flex-col justify-start items-center">
-          <div className="mx-auto w-1/2 text-center">
+          <div className="mx-auto w-5/6 md:w-1/2 text-center">
             <Label className="text-3xl m-5" htmlFor="search">
               Search
             </Label>

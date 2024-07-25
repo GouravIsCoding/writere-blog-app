@@ -81,7 +81,7 @@ export default function SignupPage() {
             )}
           />
           <h1 className="text-center">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link className="underline" href={"/signup"}>
               Signup Now
             </Link>

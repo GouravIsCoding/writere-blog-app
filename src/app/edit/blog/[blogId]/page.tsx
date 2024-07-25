@@ -13,7 +13,7 @@ export default function Page({ params }: { params: { blogId: string } }) {
 
   useEffect(() => {
     getBlogByIdAction(params.blogId).then((res) => setBlog(res?.data?.blog));
-  }, []);
+  }, [params.blogId]);
 
   if (blog && blog?.author.email === data?.user.email)
     return (

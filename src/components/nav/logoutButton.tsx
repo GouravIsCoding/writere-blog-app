@@ -17,7 +17,7 @@ export function Logout() {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className="m-2 mx-auto py-2 px-3 block md:inline-block"
+          className="m-2 py-2 px-3 block md:inline-block"
           variant="destructive"
         >
           Logout
